@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>TikTok Live Counter</title>
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .box { background: #1a1a1a; padding: 40px; border-radius: 20px; text-align: center; border: 1px solid #333; }
+        input { padding: 15px; border-radius: 10px; border: none; width: 200px; margin-right: 10px; background: #333; color: white; }
+        button { padding: 15px 25px; border-radius: 10px; border: none; background: #fe2c55; color: white; cursor: pointer; font-weight: bold; }
+        #counter { font-size: 80px; color: #25F4EE; margin-top: 20px; font-weight: 900; }
+        #status { color: #888; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Contador de Views Totais</h2>
+        <input type="text" id="userInput" placeholder="Ex: fuschinha">
+        <button onclick="start()">Monitorar</button>
+        <div id="status">Aguardando comando...</div>
+        <div id="counter">0</div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.umd.js"></script>
+
+<script>
+    let lastValue = 0;
+    let demoCounter;
+
+    // Configura o contador visual
+    window.onload = () => {
+        demoCounter = new countUp.CountUp('counter', 0, {
+            duration: 2, // Tempo da animação em segundos
+            separator: '.',
+            decimal: ','
+        });
+    };
+
+    async function fetchData() {
+        const user = document.getElementById('userInput').value;
+        if (!user) return;
+
+        document.getElementById('status').innerText = "Sincronizando com TikTok...";
+        
+        try {
+            const res = await fetch(`http://localhost:3000/stats/${user}`);
+            const data = await res.json();
+            
+            if (data.totalViews !== undefined) {
+                const newValue = data.totalViews;
+                
+                // Faz a animação do número subindo do valor antigo para o novo
+                demoCounter.update(newValue);
+                
+                document.getElementById('status').innerText = "Última sincronização real: " + new Date().toLocaleTimeString();
+                lastValue = newValue;
+            }
+        } catch (err) {
+            document.getElementById('status').innerText = "Erro ao conectar no servidor.";
+        }
+    }
+
+    function start() {
+        fetchData(); 
+        // Atualiza a cada 1 minuto (60000ms) para economizar sua cota de 50/dia
+        setInterval(fetchData, 60000); 
+        
+    }
+</script>
+</body>
+</html>
