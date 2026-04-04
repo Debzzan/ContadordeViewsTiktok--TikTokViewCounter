@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.static('.'));
 
-const RAPIDAPI_KEY = '663d8ebafbmsh925528f38329688p114cc1jsnc3830cf791b7';
+const RAPIDAPI_KEY = 'SEU_ID_AQUI'; // Substitua por sua chave da RapidAPI
 const RAPIDAPI_HOST = 'tiktok-scraper7.p.rapidapi.com';
 
 app.get('/stats/:userId', async (req, res) => {
