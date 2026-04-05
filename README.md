@@ -43,8 +43,6 @@ https://rapidapi.com/tikwm-tikwm-default/api/tiktok-scraper7/playground/apiendpo
 4. To open the interface, run:  
    `open index.html` 
 
-5. This application does not support direct usernames, meaning that you will need to find tiktok user ID. To do this, visit https://fameswap.com/tool-tiktok-user-id and enter the username you would like. 
-`Ex.: Nike has @nike as its username, so on this website, type nike to find its TikTok ID, and then enter it in the application's search bar (TikTok ID is often a numeric sequence, such as: 208464585232822272)`
 ---
 
 ## 🇧🇷 Português
@@ -90,6 +88,4 @@ https://rapidapi.com/tikwm-tikwm-default/api/tiktok-scraper7/playground/apiendpo
 4. Para abrir a interface, execute:  
    `open index.html`
 
-5. Esta aplicação não suporta o uso direto de usernames, o que significa que você precisará encontrar o ID do usuário do TikTok. Para isso, acesse https://fameswap.com/tool-tiktok-user-id e digite o nome de usuário.
-`Ex.: A Nike possui @nike como username, então nesse site, digite "nike" para encontrar o TikTok ID e depois insira-o na barra de busca da aplicação.(O tiktok ID geralmente é uma sequencia de números como: 208464585232822272)`
 ---
